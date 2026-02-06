@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <title>A Walk Through the Forest ✨</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Hello World!</h1>
+
+  <!-- Floating magical particles -->
+  <div id="particles"></div>
+
+  <!-- Intro text -->
+  <section class="intro">
+    <h1>Take a walk with me 🌲✨</h1>
+    <p>Just wander a little...</p>
+  </section>
+
+  <!-- Spacer to create exploration -->
+  <div class="spacer"></div>
+
+  <!-- Hidden Valentine question -->
+  <section class="question" id="question">
+    <h2>Will you be my Valentine? 💖</h2>
+    <div class="buttons">
+      <button id="yes">Yes 💕</button>
+      <button id="no">No 😅</button>
+    </div>
+    <p id="magic-text" class="hidden">
+      ✨ You just made this forest a whole lot brighter ✨
+    </p>
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
