@@ -1,48 +1,31 @@
-// Reveal question after scrolling
-const question = document.getElementById("question");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > window.innerHeight * 0.8) {
-    question.classList.add("visible");
-  }
-});
-
-// Make "No" button run away
 const noBtn = document.getElementById("no");
 
-noBtn.addEventListener("mouseenter", () => {
-  const x = Math.random() * 200 - 100;
-  const y = Math.random() * 200 - 100;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-});
+function moveNoButton() {
+  const padding = 20;
 
-// Yes button magic
-const yesBtn = document.getElementById("yes");
-const magicText = document.getElementById("magic-text");
+  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
-yesBtn.addEventListener("click", () => {
-  magicText.classList.remove("hidden");
-  spawnBurst();
-});
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
 
-// Floating particles
-const particleContainer = document.getElementById("particles");
-
-function spawnParticle() {
-  const p = document.createElement("div");
-  p.className = "particle";
-  p.style.left = Math.random() * 100 + "vw";
-  p.style.animationDuration = 6 + Math.random() * 6 + "s";
-  particleContainer.appendChild(p);
-
-  setTimeout(() => p.remove(), 12000);
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+  noBtn.style.transition = "left 0.15s, top 0.15s";
 }
 
-setInterval(spawnParticle, 300);
+// Runs away on hover AND when cursor gets close
+noBtn.addEventListener("mouseenter", moveNoButton);
 
-// Celebration burst
-function spawnBurst() {
-  for (let i = 0; i < 30; i++) {
-    setTimeout(spawnParticle, i * 50);
+document.addEventListener("mousemove", (e) => {
+  const rect = noBtn.getBoundingClientRect();
+  const distance = Math.hypot(
+    e.clientX - (rect.left + rect.width / 2),
+    e.clientY - (rect.top + rect.height / 2)
+  );
+
+  if (distance < 120) {
+    moveNoButton();
   }
-}
+});
