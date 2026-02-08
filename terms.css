@@ -4,7 +4,7 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background-color: #f9e3e3;
+  background-color: #1f2d1f;
   font-family: Arial, sans-serif;
   padding: 24px;
 }
@@ -17,7 +17,7 @@ body {
 
 h1 {
   font-size: 2.2em;
-  color: #d32f2f;
+  color: #e6f2d5;
   margin-bottom: 6px;
 }
 
@@ -27,7 +27,7 @@ h1 {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 251, 242, 0.88);
   border-radius: 12px;
   padding: 18px 18px;
   margin: 18px auto 16px;
@@ -71,12 +71,12 @@ button:disabled {
 }
 
 .primary {
-  background-color: #4caf50;
+  background-color: #2f7d32;
   color: white;
 }
 
 .danger {
-  background-color: #f44336;
+  background-color: #8b2f2f;
   color: white;
   transition: transform 120ms ease;
 }
