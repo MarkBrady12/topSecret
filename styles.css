@@ -4,48 +4,67 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f9e3e3;
-    font-family: 'Arial', sans-serif;
+    /* Earthy Cream/Beige background */
+    background-color: #f2f0e4; 
+    /* Forest Texture: Soft green gradient */
+    background-image: radial-gradient(#dcedc1 1px, transparent 1px);
+    background-size: 20px 20px;
+    font-family: 'Georgia', serif;
     flex-direction: column;
-  }
-  
-  .container {
+}
+
+.container {
     text-align: center;
-  }
-  
-  h1 {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 40px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+h1 {
     font-size: 2.5em;
-    color: #d32f2f;
-  }
-  
-  .buttons {
+    /* Deep Forest Green */
+    color: #2d4c1e; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.buttons {
     margin-top: 20px;
-  }
-  
-  .yes-button {
+}
+
+.yes-button {
     font-size: 1.5em;
-    padding: 10px 20px;
+    padding: 15px 30px;
     margin-right: 10px;
-    background-color: #4caf50;
+    /* Moss Green */
+    background-color: #556b2f; 
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
-  }
-  
-  .no-button {
+    transition: transform 0.2s;
+}
+
+.yes-button:hover {
+    background-color: #6b8e23;
+    transform: scale(1.1);
+}
+
+.no-button {
     font-size: 1.5em;
-    padding: 10px 20px;
-    background-color: #f44336;
+    padding: 15px 30px;
+    /* Earthy Terracotta/Brown */
+    background-color: #bc8f8f; 
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
-  }
-  
-  .gif_container img {
-    max-width: 100%;
+}
+
+.gif_container img {
+    max-width: 250px;
     height: auto;
-    border-radius: 10px;
+    border-radius: 20px;
     margin-top: 20px;
-  }
+    border: 5px solid #fff;
+}
