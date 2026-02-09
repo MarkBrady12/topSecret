@@ -1,11 +1,11 @@
 // --- CONFIGURATION AREA ---
-const YOUTUBE_ID = "0K3M_u99IsY"; // REPLACE with your YouTube Video ID (the part after v=)
+const YOUTUBE_ID = "0QdbeM2JWYE"; // REPLACE with your YouTube Video ID (the part after v=)
 const GIFS = [
-  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmo3c3l5ODh3ZGN6NHhhaDE2Mjg1ZjkwOXczdDFxbWM3dTBtaW9zaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9XY4f3FgFTT4QlaYqa/giphy.gif", // Your current cat gif
-  "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif", // Irish dance
-  "https://media.giphy.com/media/3o6Zt7kFJmNQ8jQx4k/giphy.gif", // Shamrock
-  "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif", // Confetti
-  "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"  // Party
+  "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGJ4MnB1cTFnd2x2ZHAxZmtmd2NsbzA3d2RseGkya3Y4ZzF2MWJ0YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l46CqLVMWzaJUFPLW/giphy.gif", // Your current cat gif
+  "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzIzc2Rnd253MHVhb2syd2VyN3puY21nb2FnbGVnMW5yZ2Q4bjljdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nLTNZzEm19mFO/giphy.gif", // Irish dance
+  "https://media2.giphy.com/media/x9WBAwoSAuCypNRAsN/200w.gif", // Shamrock
+  "https://www.crossed-flag-pins.com/animated-flag-gif/gifs/Ireland_240-animated-flag-gifs.gif", // Confetti
+  "https://www.crossed-flag-pins.com/animated-flag-gif/gifs/Sweden_240-animated-flag-gifs.gif"  // Party
 ];
 // --------------------------
 
@@ -80,7 +80,7 @@ function startChaos() {
   // Continuous spawning
   setInterval(() => {
     spawnThing(GIFS[Math.floor(Math.random() * GIFS.length)]);
-  }, 400);
+  }, 200);
 
   // Periodic color madness
   setInterval(() => {
