@@ -3,36 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms & Conditions</title>
+  <title>The Woodland Pact</title>
   <link rel="stylesheet" href="terms.css" />
 </head>
 <body>
   <div class="container">
-    <h1>le terms and conditions: 💘</h1>
-    <p class="sub">Please review carefully</p>
+    <div class="header-section">
+      <h1>Terms & Conditions of Being My Valentine 🌲</h1>
+      <p class="sub">Please review carefully (my lawyers are plushies) 🧸.</p>
+    </div>
 
     <div class="card">
+      <div class="scroll-edge top"></div>
       <ol>
-        <li>You agree to accept any and all complements from moi</li>
-        <li>You acknowledge how pretty you are</li>
-        <li>You consent to being called a radish at appropriate times (between 00:00 and 23:59 each day)</li>
-        <li>You agree to show me more forests (non negotiable)</li>
-        <li>You agree to agree to tolerate or lie about tolerating my beeping</li>
-        <li>By clicking “I Agree”, you accept to not convert me to your satanic protestant ways</li>
+        <li>You agree to receive surprise hugs with zero (0) business days notice.</li>
+        <li>Snack sharing is mandatory. Snack stealing is also mandatory.</li>
+        <li>You consent to being called cute at medically irresponsible levels.</li>
+        <li>Any “I’m not cute” claims will be rejected for lack of evidence.</li>
+        <li>Movie night veto power may be used for: romcoms, comfort films, and chaos.</li>
+        <li>By clicking “I Agree”, you accept unlimited affection & mild silliness.</li>
       </ol>
 
       <label class="checkbox">
         <input id="readBox" type="checkbox" />
+        <span class="custom-box"></span>
         I have read these terms (I have not, but I support the vibe).
       </label>
+      <div class="scroll-edge bottom"></div>
     </div>
 
     <div class="buttons">
-      <button id="agreeBtn" class="primary" disabled>yuh yuh yuhhhhh ✅</button>
+      <button id="agreeBtn" class="primary" disabled>I Agree ✅</button>
       <button id="disagreeBtn" class="danger">I Do Not Agree ❌</button>
     </div>
 
-    <p id="hint" class="hint">Fun fact: checking the box unlocks the “Agree” button</p>
+    <p id="hint" class="hint">Tip: checking the box unlocks the “Agree” button 😇</p>
   </div>
 
   <script>
@@ -48,24 +53,24 @@
       window.location.href = "celebration.html";
     });
 
-    // Fun: make "Disagree" dodge the mouse after a couple tries
+    // Keeping your original dodging logic but making it smoother
     let dodges = 0;
     disagreeBtn.addEventListener("mouseenter", () => {
       dodges++;
-      if (dodges < 6) {
-        const x = Math.floor(Math.random() * 240) - 120;
-        const y = Math.floor(Math.random() * 140) - 70;
+      if (dodges < 10) {
+        const x = Math.floor(Math.random() * 200) - 100;
+        const y = Math.floor(Math.random() * 120) - 60;
         disagreeBtn.style.transform = `translate(${x}px, ${y}px)`;
       }
     });
 
     disagreeBtn.addEventListener("click", () => {
       const messages = [
-        "Nice try",
-        "That button is for decoration",
-        "Legally, you must agree (source: me)",
+        "Nice try 😌",
+        "That button is for decoration.",
+        "Legally, you must agree (source: me).",
         "Ok but what if you agreed tho",
-        "Girl..."
+        "This is getting embarrassing for the button…"
       ];
       alert(messages[Math.floor(Math.random() * messages.length)]);
     });
