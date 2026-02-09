@@ -3,29 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YES CONFIRMED 🍀</title>
+  <title>LUCK OF THE IRISH! 🍀</title>
   <link rel="stylesheet" href="celebration.css" />
 </head>
 <body>
-  <div class="overlay">
-    <h1>AN IRISH MAN IS NOW EXTREMELY HAPPY 🍀💚</h1>
-    <p id="sub">Commencing: chaos, dancing, and pure vibes…</p>
-
-    <div class="controls">
-      <button id="musicBtn">🔊 Start the tunes</button>
-      <button id="toYesBtn" class="primary">Proceed to the cute page ➜</button>
-    </div>
+  <div id="setupOverlay" class="setup-overlay">
+    <button id="startBtn" class="big-start-btn">🍀 START THE CELEBRATION 🍀</button>
   </div>
 
-  <!-- Audio (note: needs a click to reliably start in most browsers) -->
-  <audio id="bgAudio" loop preload="auto">
-    <!-- Put your own mp3 in the project and update this path -->
-    <source src="assets/irish-tunes.mp3" type="audio/mpeg" />
-  </audio>
+  <div class="overlay">
+    <h1 id="mainTitle">KNEW YOU'D SAY YES! 💚</h1>
+    <p id="sub">The forest spirits are throwing a rager...</p>
+  </div>
 
-  <!-- Chaos container -->
+  <div id="youtube-player"></div>
+
   <div id="chaos"></div>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="celebration.js"></script>
 </body>
 </html>
