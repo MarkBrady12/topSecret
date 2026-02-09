@@ -80,7 +80,7 @@ function startChaos() {
   // Continuous spawning
   setInterval(() => {
     spawnThing(GIFS[Math.floor(Math.random() * GIFS.length)]);
-  }, 600);
+  }, 1200);
 
   // Periodic color madness
   setInterval(() => {
