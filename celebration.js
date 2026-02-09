@@ -1,100 +1,90 @@
-const chaos = document.getElementById("chaos");
-const bgAudio = document.getElementById("bgAudio");
-const musicBtn = document.getElementById("musicBtn");
-const toYesBtn = document.getElementById("toYesBtn");
-const sub = document.getElementById("sub");
-
-// Swap these URLs for your favourites
+// --- CONFIGURATION AREA ---
+const YOUTUBE_ID = "0K3M_u99IsY"; // REPLACE with your YouTube Video ID (the part after v=)
 const GIFS = [
-  "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
-  "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
-  "https://media.giphy.com/media/3o6Zt7kFJmNQ8jQx4k/giphy.gif",
-  "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
-  "https://media.giphy.com/media/3oKIPsx2VAYAgEHC12/giphy.gif"
+  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmo3c3l5ODh3ZGN6NHhhaDE2Mjg1ZjkwOXczdDFxbWM3dTBtaW9zaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9XY4f3FgFTT4QlaYqa/giphy.gif", // Your current cat gif
+  "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif", // Irish dance
+  "https://media.giphy.com/media/3o6Zt7kFJmNQ8jQx4k/giphy.gif", // Shamrock
+  "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif", // Confetti
+  "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"  // Party
 ];
+// --------------------------
 
-function r(min, max) { return Math.random() * (max - min) + min; }
-function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+let player;
+const chaos = document.getElementById("chaos");
+const startBtn = document.getElementById("startBtn");
+const overlay = document.getElementById("setupOverlay");
 
-function spawnAcrossScreen(src) {
+// 1. YouTube API setup
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('youtube-player', {
+    height: '0',
+    width: '0',
+    videoId: YOUTUBE_ID,
+    playerVars: { 'autoplay': 0, 'controls': 0, 'loop': 1, 'playlist': YOUTUBE_ID },
+    events: { 'onReady': onPlayerReady }
+  });
+}
+
+function onPlayerReady(event) {
+  // Player is ready, but we wait for the click to play
+}
+
+// 2. The Chaos Trigger
+startBtn.addEventListener("click", () => {
+    overlay.style.display = "none"; // Hide the button
+    
+    // Start Music & Force Volume
+    if (player) {
+        player.playVideo();
+        player.setVolume(100); // Forces volume to 100%
+    }
+    
+    startChaos();
+    document.body.classList.add("flash-green");
+});
+
+function rand(min, max) { return Math.random() * (max - min) + min; }
+
+function spawnThing(src) {
   const img = document.createElement("img");
   img.src = src;
   img.className = "thing";
 
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
+  const size = rand(100, 300);
+  const dur = rand(4, 10);
+  const spin = rand(2, 5);
 
-  // Choose an edge to spawn from
-  const edge = Math.floor(r(0, 4)); // 0 top, 1 right, 2 bottom, 3 left
-  const padding = 180; // spawn off-screen
-
-  let x0, y0, x1, y1;
-
-  if (edge === 0) { // top -> somewhere below
-    x0 = r(-padding, vw + padding); y0 = -padding;
-    x1 = r(-padding, vw + padding); y1 = vh + padding;
-  } else if (edge === 1) { // right -> left
-    x0 = vw + padding; y0 = r(-padding, vh + padding);
-    x1 = -padding;     y1 = r(-padding, vh + padding);
-  } else if (edge === 2) { // bottom -> top
-    x0 = r(-padding, vw + padding); y0 = vh + padding;
-    x1 = r(-padding, vw + padding); y1 = -padding;
-  } else { // left -> right
-    x0 = -padding; y0 = r(-padding, vh + padding);
-    x1 = vw + padding; y1 = r(-padding, vh + padding);
-  }
-
-  const size = r(70, 240);
-  const dur = r(4.5, 12);          // speed variability
-  const spin = r(2.5, 10);         // rotation variability
-  const bounce = r(0.6, 1.6);
-  const opacity = r(0.75, 1);
+  const x0 = `${rand(-10, 110)}vw`;
+  const y0 = `${rand(-10, 110)}vh`;
+  const x1 = `${rand(-10, 110)}vw`;
+  const y1 = `${rand(-10, 110)}vh`;
 
   img.style.setProperty("--size", `${size}px`);
   img.style.setProperty("--dur", `${dur}s`);
   img.style.setProperty("--spin", `${spin}s`);
-  img.style.setProperty("--bounce", `${bounce}s`);
-
-  img.style.setProperty("--x0", `${x0}px`);
-  img.style.setProperty("--y0", `${y0}px`);
-  img.style.setProperty("--x1", `${x1}px`);
-  img.style.setProperty("--y1", `${y1}px`);
-
-  img.style.opacity = opacity;
+  img.style.setProperty("--x0", x0);
+  img.style.setProperty("--y0", y0);
+  img.style.setProperty("--x1", x1);
+  img.style.setProperty("--y1", y1);
 
   chaos.appendChild(img);
-  setTimeout(() => img.remove(), (dur + 2) * 1000);
+  setTimeout(() => img.remove(), 10000);
 }
 
 function startChaos() {
-  // burst
-  for (let i = 0; i < 14; i++) spawnAcrossScreen(pick(GIFS));
-
-  // continuous
-  setInterval(() => spawnAcrossScreen(pick(GIFS)), 350);
-
-  // optional: occasional full-screen shake vibe
-  setInterval(() => {
-    document.body.style.transform = `translate(${r(-6, 6)}px, ${r(-6, 6)}px)`;
-    setTimeout(() => (document.body.style.transform = ""), 120);
-  }, 900);
-}
-
-// Try to play audio (works best when arriving via "Agree" click)
-async function startTunes() {
-  try {
-    bgAudio.volume = 0.8;
-    await bgAudio.play();
-    musicBtn.textContent = "🎶 Tunes playing";
-    if (sub) sub.textContent = "Trad tunes engaged. Chaos levels rising.";
-  } catch (e) {
-    // If blocked, user can still hit the button
-    if (sub) sub.textContent = "Tap “Start the tunes” (browser rules 🙄).";
+  // Initial burst
+  for (let i = 0; i < 20; i++) {
+    spawnThing(GIFS[Math.floor(Math.random() * GIFS.length)]);
   }
+
+  // Continuous spawning
+  setInterval(() => {
+    spawnThing(GIFS[Math.floor(Math.random() * GIFS.length)]);
+  }, 400);
+
+  // Periodic color madness
+  setInterval(() => {
+    document.body.style.filter = `hue-rotate(${rand(0, 360)}deg) brightness(1.2)`;
+    setTimeout(() => document.body.style.filter = "none", 200);
+  }, 2000);
 }
-
-musicBtn.addEventListener("click", startTunes);
-toYesBtn.addEventListener("click", () => (window.location.href = "yes_page.html")); // :contentReference[oaicite:3]{index=3}
-
-startChaos();
-startTunes();
