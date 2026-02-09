@@ -1,89 +1,68 @@
 :root {
-  --bg1: #0b3d2e;
-  --bg2: #137a4e;
-  --txt: #f7ffe9;
+  --forest-deep: #0b3d2e;
+  --irish-gold: #ffd700;
+  --shamrock: #009a44;
+  --parchment: #fdf5e6;
 }
-
-* { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
   overflow: hidden;
-  font-family: Arial, sans-serif;
-  color: var(--txt);
-  background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+  background-color: var(--forest-deep);
+  font-family: 'Georgia', serif;
+  color: var(--parchment);
 }
 
-/* Big centered text overlay */
+.setup-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--forest-deep);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-start-btn {
+  padding: 30px 60px;
+  font-size: 2em;
+  background: var(--shamrock);
+  color: white;
+  border: 5px solid var(--irish-gold);
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 30px var(--shamrock);
+  animation: pulse 1.5s infinite;
+}
+
 .overlay {
   position: fixed;
   inset: 0;
-  display: grid;
-  place-content: center;
-  text-align: center;
-  padding: 24px;
-  z-index: 5;
-  pointer-events: none; /* lets chaos pass behind */
-}
-
-.overlay h1 {
-  margin: 0 0 10px;
-  font-size: clamp(26px, 4vw, 56px);
-  text-shadow: 0 6px 20px rgba(0,0,0,0.35);
-  animation: wobble 900ms infinite alternate ease-in-out;
-}
-
-#sub {
-  margin: 0 0 18px;
-  opacity: 0.9;
-  font-size: clamp(14px, 2vw, 20px);
-}
-
-.controls {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
-  pointer-events: auto; /* re-enable buttons */
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
 }
 
-button {
-  border: none;
-  border-radius: 12px;
-  padding: 10px 14px;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+#mainTitle {
+  font-size: 5rem;
+  color: var(--irish-gold);
+  text-shadow: 0 0 20px rgba(0,0,0,0.8);
+  margin: 0;
+  animation: wobble 0.5s infinite alternate ease-in-out;
 }
 
-button:hover { transform: translateY(-1px); }
-
-.primary {
-  background: #ffd54a;
-}
-
-#musicBtn {
-  background: #ffffff;
-}
-
-/* Chaos items */
-#chaos {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-}
-
+/* Chaos items logic */
 .thing {
   position: absolute;
   width: var(--size);
-  height: auto;
-  user-select: none;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
-  animation:
-    drift var(--dur) linear infinite,
-    spin var(--spin) linear infinite,
-    bounce var(--bounce) ease-in-out infinite;
+  z-index: 1;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+  animation: drift var(--dur) linear infinite, spin var(--spin) linear infinite;
 }
 
 @keyframes drift {
@@ -96,12 +75,24 @@ button:hover { transform: translateY(-1px); }
   to   { rotate: 360deg; }
 }
 
-@keyframes bounce {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -18px; }
+@keyframes wobble {
+  from { transform: scale(1); rotate: -2deg; }
+  to   { transform: scale(1.1); rotate: 2deg; }
 }
 
-@keyframes wobble {
-  from { transform: rotate(-1deg) scale(1.01); }
-  to   { transform: rotate(1deg) scale(1.03); }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Screen flashing effect for maximum chaos */
+.flash-green {
+    animation: flash 0.2s 5;
+}
+
+@keyframes flash {
+    0% { background: var(--forest-deep); }
+    50% { background: var(--shamrock); }
+    100% { background: var(--forest-deep); }
 }
