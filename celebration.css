@@ -96,3 +96,37 @@ body {
     50% { background: var(--shamrock); }
     100% { background: var(--forest-deep); }
 }
+
+.text-group {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3); /* Optional: darkens area behind text for readability */
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px); /* Makes it look premium/misty */
+}
+
+#sub {
+    margin: 0;
+    font-size: 1.2rem;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* The Line Jazz */
+.forest-divider {
+    height: 2px;
+    width: 100%; /* Spans exactly the width of the text container */
+    background: linear-gradient(90deg, transparent, #ffd700, transparent); /* Gold fade */
+    margin: 15px 0;
+}
+
+.gailge-text {
+    margin: 0;
+    font-size: 1.8rem; /* Slightly larger as requested */
+    font-weight: bold;
+    color: #ffd700; /* Irish Gold */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    font-family: 'Georgia', serif;
+}
